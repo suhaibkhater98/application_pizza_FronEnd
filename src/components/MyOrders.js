@@ -53,7 +53,7 @@ const MyOrders = props => {
                     items.map( (item , index) => {
                         return (
                             <ul key={index}>
-                                <li>{item.title} - {item.price} - {item.quantity ? item.quantity : 1} Pieces</li>
+                                <li>{item.title} - {item.price}QR - {item.quantity ? item.quantity : 1} Pieces</li>
                             </ul>
                         )
                     })

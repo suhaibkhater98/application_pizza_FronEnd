@@ -1,2 +1,2 @@
-var base_url = "http://127.0.0.1:8000/api/"
+var base_url = "http://floating-castle-95496.herokuapp.com/api/"
 export default base_url

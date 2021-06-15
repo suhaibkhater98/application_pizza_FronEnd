@@ -8,7 +8,7 @@ const MyOrders = props => {
     const [orders , setOrders] = useState([])
     const [error , setError] = useState('')
 
-    useEffect( () => {
+    useEffect( async () => {
         if(!window.sessionStorage.getItem('token')) {
             window.sessionStorage.setItem('msg', 'Please sign in first!')
             props.history.push('/login');
@@ -23,7 +23,7 @@ const MyOrders = props => {
             'Authorization': window.sessionStorage.getItem('token')
         }
           
-        axios.post(url, data, {
+        await axios.post(url, data, {
             headers: headers
         })
         .then((response) => {

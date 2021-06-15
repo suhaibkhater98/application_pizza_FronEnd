@@ -10,7 +10,7 @@ const Login = (props) => {
     const [password, setPassword] = useState('')
 
 
-    useEffect( (props) => {
+    useEffect( () => {
         if(window.sessionStorage.getItem('token')){
             props.history.push('/')
         }

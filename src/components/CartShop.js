@@ -52,13 +52,13 @@ const CartShop = props => {
     return (
        
         <div>
-            <div className="border border-light p-3 mb-4">
+            <div className="p-3 mb-4">
                 <div className="text-center">
                     {error !== '' && <Error error={error}/>}
                     {success !== '' && <Success success={success}/>}
                 </div>
             </div>
-            { props.cartItems.length === 0 ? <h1 style={{textAlign:'center' , margin:'20px'}}>Cart is Empty</h1> :<h1 style={{textAlign:'center'}}>You Orders are:</h1>}
+            { props.cartItems.length === 0 ? <h1 style={{textAlign:'center' , margin:'20px'}}>Shopping Cart is Empty</h1> :<h1 style={{textAlign:'center'}}>You Orders are:</h1>}
             <div className="row">
                 {
                     props.cartItems.map( (item , index )=> {

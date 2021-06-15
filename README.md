@@ -1,3 +1,5 @@
+## notice you can change the Api URL from src/components/ApiUrl.js
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -101,8 +101,10 @@ const MyOrders = props => {
     } else {
         return(
             <div>
-                    <ClipLoader color="#365BD7" css={override} loading={loading} size={35} /> 
+                {
+                    loading ? <ClipLoader color="#365BD7" css={override} loading={loading} size={35} /> :
                     <h1 style={{textAlign:'center' , margin:'20px'}}>You don't have Orders</h1>
+                }
             </div>
         )
     }

@@ -5,6 +5,7 @@ import {useState} from 'react'
 import base_url from './ApiUrl'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
+import ClipLoader from "react-spinners/ClipLoader";
 
 const CartShop = props => {
 
@@ -17,10 +18,12 @@ const CartShop = props => {
     const [location , setLocation] = useState(null)
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+    const [loading , setLoading] = useState(false)
 
 
     const makeOrder = async (event) => {
         event.preventDefault()
+        setLoading(true)
         let data = {
             phone_number: phoneNumber,
             location: location,
@@ -45,15 +48,19 @@ const CartShop = props => {
                 setModalShow(false)
             }
         } catch(e){
-            console.log(e)
+            setError(e.message)
         }
+        setLoading(false)
     }
+
+    const override = {display: 'block', margin: '0 auto'}
 
     return (
        
         <div>
             <div className="p-3 mb-4">
                 <div className="text-center">
+                    <ClipLoader color="#365BD7" css={override} loading={loading} size={35} />
                     {error !== '' && <Error error={error}/>}
                     {success !== '' && <Success success={success}/>}
                 </div>

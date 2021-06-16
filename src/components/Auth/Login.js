@@ -1,13 +1,14 @@
 import axios from 'axios'
 import base_url from '../ApiUrl'
 import {useEffect , useState} from 'react'
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Login = (props) => {
 
     const [error, setError] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading , setLoading] = useState(false)
 
 
     useEffect( () => {
@@ -18,7 +19,7 @@ const Login = (props) => {
 
     const postLogin = async (event) => {
         event.preventDefault()
-
+        setLoading(true)
         let data = {
             email: email,
             password: password
@@ -43,6 +44,7 @@ const Login = (props) => {
             window.sessionStorage.clear();
             setError('Error');
         }
+        setLoading(false)
     }
     
     let formStyle = {
@@ -53,11 +55,13 @@ const Login = (props) => {
         marginBottom: '5px'
     };
 
+    const override = {display: 'block', margin: '0 auto'}
+
     return (
         <div className="container h-100 register-container">
             {window.sessionStorage.getItem('msg') && <Child />}
             {error !== '' && <Error />}
-
+            <ClipLoader color="#365BD7" css={override} loading={loading} size={35} />
             <div className="container h-100 login-container">
                 <div className="row h-100 justify-content-center align-items-center">
                     <form style={formStyle} method="POST" onSubmit={(e) => postLogin(e)} className="form-signin col-4">

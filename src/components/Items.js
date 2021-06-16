@@ -1,6 +1,7 @@
 import React from 'react'
 import base_url from './ApiUrl'
 import {Card , Button} from 'react-bootstrap'
+import ClipLoader from "react-spinners/ClipLoader";
 
 class Items extends React.Component{
 
@@ -16,11 +17,12 @@ class Items extends React.Component{
         this.setState({items: response , loading:false})
     }
     
+    override = {display: 'block', margin: '0 auto'}
     render = () => {
         return (
             <div>
                 {
-                    this.state.loading || !this.state.items ? <div>Loading ... </div> : 
+                    this.state.loading || !this.state.items ? <ClipLoader color="#365BD7" css={this.override} loading={this.state.loading} size={35} /> : 
                     <div className="row">
                         {
                              this.state.items.map( item => (

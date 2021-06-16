@@ -1,12 +1,14 @@
 import React,{useEffect , useState} from 'react'
 import {withRouter} from 'react-router-dom'
 import base_url from './ApiUrl'
-import axios from 'axios'  
+import axios from 'axios'
+import ClipLoader from "react-spinners/ClipLoader";  
 
 const MyOrders = props => {
 
     const [orders , setOrders] = useState([])
     const [error , setError] = useState('')
+    const [loading , setLoading] = useState(true)
 
     useEffect( async () => {
         if(!window.sessionStorage.getItem('token')) {
@@ -36,7 +38,7 @@ const MyOrders = props => {
         .catch((error) => {
             setError(error.message)
         })
-
+        setLoading(false)
     }, []);
 
 
@@ -64,6 +66,7 @@ const MyOrders = props => {
         })
     }
 
+    const override = {display: 'block', margin: '0 auto'}
     if(orders.length !== 0){
         return (
             <div>
@@ -98,7 +101,8 @@ const MyOrders = props => {
     } else {
         return(
             <div>
-                <h1 style={{textAlign:'center' , margin:'20px'}}>You don't have Orders</h1>
+                    <ClipLoader color="#365BD7" css={override} loading={loading} size={35} /> 
+                    <h1 style={{textAlign:'center' , margin:'20px'}}>You don't have Orders</h1>
             </div>
         )
     }

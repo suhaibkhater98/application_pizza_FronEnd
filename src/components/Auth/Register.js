@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import axios from "axios";
 import base_url from '../ApiUrl'
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Register = (props) => {
 
@@ -10,6 +11,7 @@ const Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password_confirmed, setConfirmPassword] = useState('');
+    const [loading , setLoading] = useState(false)
     
 
     useEffect( () => {
@@ -20,6 +22,7 @@ const Register = (props) => {
 
     const postRegister = async(event) => {
         event.preventDefault();
+        setLoading(true)
         setError('');
         setMsg('');
         if(password !== password_confirmed){
@@ -29,6 +32,7 @@ const Register = (props) => {
                 name: name,
                 email: email,
                 password: password,
+                password_confirmed: password_confirmed
             };
             try {
                 const response = await axios.request({
@@ -48,6 +52,7 @@ const Register = (props) => {
             } catch (e) {
                 setError(e.message);
             }
+            setLoading(false)
         }
     }
 
@@ -59,10 +64,13 @@ const Register = (props) => {
         marginBottom: '5px'
     };
 
+    const override = {display: 'block', margin: '0 auto'}
+
     return (
         <div className="container h-100 register-container">
             {msg !== '' && <Success msg={msg}/>}
             {error !== '' && <Error error={error}/>}
+            <ClipLoader color="#365BD7" css={override} loading={loading} size={35} />
 
             <div className="row h-100 justify-content-center align-items-center">
                 <form style={formStyle} onSubmit={ (event) => postRegister(event)} method="POST" className="form-signin col-4">

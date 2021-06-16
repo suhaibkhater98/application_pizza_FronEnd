@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import {Link} from "react-router-dom";
-import {withRouter} from 'react-router-dom';
+import {Link , withRouter} from "react-router-dom";
 import { HiShoppingCart } from 'react-icons/hi';
 import axios from 'axios'
 import base_url from './ApiUrl'
+import {Navbar , Nav} from 'react-bootstrap'
 
 const Header = ({token, cb , cart_count}) => {
 
@@ -60,7 +60,7 @@ const Header = ({token, cb , cart_count}) => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+            <Navbar className="navbar navbar-expand-md navbar-dark bg-dark">
                 <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
@@ -78,7 +78,7 @@ const Header = ({token, cb , cart_count}) => {
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     {token || isLoggedOut ? logout : loginAndRegister}
                 </div>
-            </nav>
+            </Navbar>
             {error !== '' && <Error error={error}/>}
         </div>
     );

@@ -58,11 +58,11 @@ const Login = (props) => {
     const override = {display: 'block', margin: '0 auto'}
 
     return (
-        <div className="container h-100 register-container">
+        <div>
             {window.sessionStorage.getItem('msg') && <Child />}
             {error !== '' && <Error />}
             <ClipLoader color="#365BD7" css={override} loading={loading} size={35} />
-            <div className="container h-100 login-container">
+            <div className="container">
                 <div className="row h-100 justify-content-center align-items-center">
                     <form style={formStyle} method="POST" onSubmit={(e) => postLogin(e)} className="form-signin col-4">
                         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
